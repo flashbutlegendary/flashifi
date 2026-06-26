@@ -23,6 +23,7 @@ COPY frontend/ ./frontend/
 # PORT is overridden at runtime by Render's platform.
 ENV PYTHONUNBUFFERED=1 \
     PORT=8000 \
+    PYTHONPATH=/app/backend \
     FLASHIFI_HOST=0.0.0.0 \
     FLASHIFI_PORT=8000 \
     FLASHIFI_WORKERS=1

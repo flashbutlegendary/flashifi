@@ -180,7 +180,12 @@
                     <div id="loadingMsgContainer" class="loading-message-container" style="display: none;">
                         <div id="loadingMsgText" class="loading-message-text">Analyzing soundwaves...</div>
                     </div>
-                </section>
+                <!-- Convert Another Song action -->
+                <div class="convert-more-container" id="convertMoreContainer" style="display: none;">
+                    <button id="btnConvertMore" class="btn-convert-more">
+                        <i class="fa-solid fa-rotate-left"></i> Convert Another Song
+                    </button>
+                </div>
 
             </div>
         </header>
@@ -215,6 +220,19 @@
                     <h3>Privacy Centric</h3>
                     <p>Your queries are processed memory-only. We don't log your downloads or sell your data. Pure utility.</p>
                 </div>
+        </section>
+
+        <!-- Permanent Support the Creator Section -->
+        <section id="support" class="support-section">
+            <div class="support-badge"><i class="fa-solid fa-heart"></i> 100% Free & Ad-Free</div>
+            <h2>Support the Creator</h2>
+            <p class="support-description">
+                Our coders run on caffeine, and our servers & code run on bills! FlashiFi is a completely free utility designed for speed and convenience. If this tool helped you, please consider supporting to keep the service running.
+            </p>
+            <div class="support-actions-row">
+                <a href="https://ko-fi.com/flashbutlegendary" target="_blank" rel="noopener" class="btn-support-donate">
+                    <i class="fa-solid fa-mug-hot"></i> Support with Coffee
+                </a>
             </div>
         </section>
 
@@ -355,20 +373,33 @@
 
 
 
-    <!-- ── THANK YOU SUPPORT POPUP (BOTTOM RIGHT FLOATING) ────────────────── -->
-    <div id="supportPopup" class="support-popup-overlay" role="complementary" aria-labelledby="support-popup-title" style="display: none;">
-        <div class="support-popup-content">
-            <h4 id="support-popup-title"><i class="fa-solid fa-circle-check"></i> Conversion Successful!</h4>
-            <p>
-                FlashiFi is completely free, runs with zero ads, and is maintained by a solo creator. If it saved you time, consider supporting!
-            </p>
-            <div class="support-popup-actions">
-                <a href="https://ko-fi.com/flashbutlegendary" target="_blank" rel="noopener" class="btn-support-confirm">
-                    <i class="fa-solid fa-mug-hot"></i> Support Creator
-                </a>
-                <button id="btnSupportDismiss" class="btn-support-dismiss">
-                    Maybe next paycheck 💸
-                </button>
+    <!-- ── BIG CONVERSION SUCCESS & SUPPORT POPUP OVERLAY ────────────────── -->
+    <div id="supportPopup" class="support-popup-modal-overlay" style="display: none;">
+        <div class="support-popup-modal-card">
+            <button id="btnCloseSupport" class="btn-close-modal" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-circle-check"></i> Conversion Successful!</h3>
+                <p>Your audio file is ready and your download has started!</p>
+            </div>
+            
+            <div class="support-popup-modal-body">
+                <div class="caffeine-badge"><i class="fa-solid fa-mug-hot"></i> Fueling FlashiFi</div>
+                <p class="caffeine-desc">
+                    Our coders run on caffeine, and our servers & codebase run on bills! FlashiFi is completely free and runs with zero ads. If it saved you time, please consider supporting the creator!
+                </p>
+                <div class="modal-actions-column">
+                    <a href="https://ko-fi.com/flashbutlegendary" target="_blank" rel="noopener" class="btn-support-confirm-large">
+                        <i class="fa-solid fa-cup-togo-ice"></i> Support the Creator
+                    </a>
+                    <button id="btnSupportConvertMore" class="btn-support-convert-more-large">
+                        <i class="fa-solid fa-rotate-left"></i> Convert Another Song
+                    </button>
+                    <button id="btnSupportDismiss" class="btn-support-dismiss-large">
+                        Maybe next paycheck 💸
+                    </button>
+                </div>
             </div>
         </div>
     </div>

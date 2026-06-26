@@ -58,9 +58,14 @@ const feedbackErrorOverlay = document.getElementById("feedbackErrorOverlay");
 const btnSuccessOk = document.getElementById("btnSuccessOk");
 const btnErrorOk = document.getElementById("btnErrorOk");
 
-// Support Popup
+// Support Popup & Reset elements
 const supportPopup = document.getElementById("supportPopup");
 const btnSupportDismiss = document.getElementById("btnSupportDismiss");
+const btnCloseSupport = document.getElementById("btnCloseSupport");
+const btnSupportConvertMore = document.getElementById("btnSupportConvertMore");
+
+const convertMoreContainer = document.getElementById("convertMoreContainer");
+const btnConvertMore = document.getElementById("btnConvertMore");
 
 /* ── STATE VARIABLES ────────────────────────────────────────────────────── */
 let activeQuery = "";
@@ -100,6 +105,20 @@ function setupEventListeners() {
 
     // Support popup bindings
     btnSupportDismiss.addEventListener("click", dismissSupportPopup);
+    if (btnCloseSupport) {
+        btnCloseSupport.addEventListener("click", dismissSupportPopup);
+    }
+    if (btnSupportConvertMore) {
+        btnSupportConvertMore.addEventListener("click", () => {
+            dismissSupportPopup();
+            resetToSearchState();
+        });
+    }
+
+    // Convert More binding
+    if (btnConvertMore) {
+        btnConvertMore.addEventListener("click", resetToSearchState);
+    }
 }
 
 /* ── SEARCH & METADATA FLOW ─────────────────────────────────────────────── */
@@ -258,6 +277,9 @@ function startPollingProgress() {
                 triggerFileDownload();
                 showAlert("Your audio file has been downloaded successfully!", "success");
                 resetActionState();
+                if (convertMoreContainer) {
+                    convertMoreContainer.style.display = "block";
+                }
                 triggerSupportPopup();
             } else if (progress.stage === "failed") {
                 clearInterval(progressInterval);
@@ -463,12 +485,22 @@ function triggerSupportPopup() {
 
     // Delay pop-up slightly to allow the OS download prompt to pop first
     setTimeout(() => {
-        supportPopup.style.display = "block";
+        supportPopup.style.display = "flex";
     }, 1200);
 }
 
 function dismissSupportPopup() {
     supportPopup.style.display = "none";
+}
+
+function resetToSearchState() {
+    resetSearchUI();
+    hideAlert();
+    queryInput.value = "";
+    if (convertMoreContainer) {
+        convertMoreContainer.style.display = "none";
+    }
+    window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 /* ── PWA SUPPORT & SERVICES ─────────────────────────────────────────────── */
