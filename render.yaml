@@ -1,0 +1,40 @@
+services:
+  - type: web
+    name: flashify
+    runtime: docker
+    plan: free
+    # Docker build context is the REPO ROOT so the Dockerfile can
+    # COPY both backend/ and frontend/ folders correctly.
+    dockerContext: .
+    dockerfilePath: backend/Dockerfile
+    envVars:
+      - key: FLASHIFI_DEBUG
+        value: "false"
+      - key: FLASHIFI_LOG_LEVEL
+        value: "INFO"
+      - key: FLASHIFI_HOST
+        value: "0.0.0.0"
+      - key: FLASHIFI_PORT
+        value: "8000"
+      - key: FLASHIFI_WORKERS
+        value: "1"
+      - key: FLASHIFI_CORS_ORIGINS
+        value: '["*"]'
+      - key: FLASHIFI_MAX_DURATION_SECONDS
+        value: "1200"
+      - key: FLASHIFI_MAX_FILE_SIZE_BYTES
+        value: "104857600"
+      - key: FLASHIFI_CLEANUP_INTERVAL_SECONDS
+        value: "300"
+      - key: FLASHIFI_CLEANUP_MAX_AGE_SECONDS
+        value: "3600"
+      - key: FLASHIFI_METADATA_CACHE_TTL
+        value: "1800"
+      - key: FLASHIFI_SEARCH_CACHE_TTL
+        value: "900"
+      - key: FLASHIFI_THUMBNAIL_CACHE_TTL
+        value: "3600"
+      - key: FLASHIFI_MAX_SEARCH_RESULTS
+        value: "10"
+      - key: FLASHIFI_DOWNLOAD_TIMEOUT
+        value: "300"

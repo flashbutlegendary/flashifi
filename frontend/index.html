@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Primary Meta Tags -->
+    <title>FlashiFi — High-Quality Music Downloader (MP3, FLAC, WAV)</title>
+    <meta name="title" content="FlashiFi — High-Quality Music Downloader">
+    <meta name="description" content="Download high-quality audio files from YouTube, Spotify, and YouTube Music. FlashiFi is 100% free, completely ad-free, fast, and transcodes directly to MP3, FLAC, and WAV.">
+    <meta name="keywords" content="music downloader, youtube to mp3, spotify downloader, youtube music downloader, flac converter, wav downloader, high quality audio conversion">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://flashifi.com/">
+    <meta property="og:title" content="FlashiFi — High-Quality Music Downloader">
+    <meta property="og:description" content="Download high-quality audio files from YouTube, Spotify, and YouTube Music. FlashiFi is 100% free, completely ad-free, fast, and transcodes directly to MP3, FLAC, and WAV.">
+    <meta property="og:image" content="https://flashifi.com/assets/icons/og-preview.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://flashifi.com/">
+    <meta property="twitter:title" content="FlashiFi — High-Quality Music Downloader">
+    <meta property="twitter:description" content="Download high-quality audio files from YouTube, Spotify, and YouTube Music. FlashiFi is 100% free, completely ad-free, fast, and transcodes directly to MP3, FLAC, and WAV.">
+    <meta property="twitter:image" content="https://flashifi.com/assets/icons/og-preview.png">
+
+    <!-- PWA & Mobile Settings -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0b0716">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="FlashiFi">
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/icon-32.png?v=2">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png?v=2">
+    <link rel="shortcut icon" href="favicon.ico?v=2">
+
+    <!-- Google Fonts (Outfit) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+    <!-- Decorative Ambient Glow Background Circles -->
+    <div class="bg-glow-purple"></div>
+    <div class="bg-glow-gold"></div>
+
+    <!-- Floating Navigation Bar -->
+    <nav class="nav-bar">
+        <a href="#" class="nav-logo">
+            <span class="logo-badge"><i class="fa-solid fa-bolt-lightning"></i></span>
+            <span class="logo-text">FlashiFi</span>
+        </a>
+        <div class="nav-links">
+            <a href="#why-flashifi" class="nav-link">Features</a>
+            <a href="#roadmap" class="nav-link">Coming Soon</a>
+            <a href="#feedback" class="nav-link">Feedback</a>
+        </div>
+        <a href="https://ko-fi.com/flashbutlegendary" target="_blank" rel="noopener" class="nav-btn">
+            <i class="fa-solid fa-mug-hot"></i> Support Creator
+        </a>
+    </nav>
+
+    <div class="app-wrapper">
+        
+        <!-- Hero Section -->
+        <header class="hero-section">
+            <h1>Download Without <span class="highlight-text">Compromise.</span></h1>
+            <p class="hero-subtitle">Paste your link. Verify the metadata. Download in master quality. The premium media extraction tool built for audiophiles and creators.</p>
+            
+            <!-- Search & Input Block -->
+            <div class="search-box-wrapper">
+                <div class="search-container" id="searchContainer">
+                    <i class="fa-solid fa-link input-icon"></i>
+                    <input type="text" id="queryInput" placeholder="Paste YouTube, Spotify, or Music link here..." autocomplete="off">
+                    <button id="btnSearch" class="btn-search">
+                        Resolve <i id="searchIcon" class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Search query tip box -->
+                <div class="search-tip-box">
+                    <i class="fa-solid fa-circle-info tip-icon"></i>
+                    <span class="tip-text"><strong>Tip:</strong> Search for the full song name (e.g. <em>"perfect - ed sheeran"</em>) for the best results, or paste a direct URL.</span>
+                </div>
+                
+                <div class="platforms-support">
+                    <span class="platform-badge"><i class="fa-brands fa-youtube"></i> YouTube</span>
+                    <span class="platform-badge"><i class="fa-solid fa-circle-play"></i> YT Music</span>
+                    <span class="platform-badge"><i class="fa-brands fa-spotify"></i> Spotify</span>
+                </div>
+
+                <div class="terms-disclaimer">
+                    By downloading, you agree to our Terms of Service.
+                </div>
+            </div>
+
+            <!-- Alert Messages -->
+            <div id="alertBox" class="alert-box" role="alert" style="display: none;">
+                <i id="alertIcon" class="fa-solid"></i>
+                <span id="alertMessage"></span>
+            </div>
+
+            <!-- Dynamic Workspace for Resolution & Progress (Shown when active) -->
+            <div id="resolvedWrapper" class="resolved-wrapper" style="display: none;">
+                
+                <!-- Track Details Card -->
+                <article id="trackCard" class="track-card">
+                    <div class="track-layout">
+                        <img id="trackThumbnail" class="track-thumbnail" src="" alt="Album Artwork Preview">
+                        <div class="track-meta">
+                            <h2 id="trackTitle" class="track-title">—</h2>
+                            <div id="trackArtist" class="track-artist">—</div>
+                            <div class="track-badges">
+                                <span id="trackDuration" class="badge-item"><i class="fa-regular fa-clock"></i> 0:00</span>
+                                <span id="trackSize" class="badge-item"><i class="fa-regular fa-file-audio"></i> 0.0 MB</span>
+                                <span id="trackPlatformBadge" class="badge-item platform"><i class="fa-solid fa-magnifying-glass"></i> Search</span>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Configuration Options -->
+                <section id="configGrid" class="config-grid" aria-label="Format Configuration">
+                    <div class="select-wrapper">
+                        <label for="formatSelect">Output Format</label>
+                        <select id="formatSelect">
+                            <option value="mp3" selected>MP3 (Compressed)</option>
+                            <option value="flac">FLAC (Lossless)</option>
+                            <option value="wav">WAV (Raw / Uncompressed)</option>
+                        </select>
+                    </div>
+                    <div class="select-wrapper">
+                        <label for="qualitySelect">Audio Quality</label>
+                        <select id="qualitySelect">
+                            <option value="320" selected>320 kbps (Ultra)</option>
+                            <option value="256">256 kbps (High)</option>
+                            <option value="192">192 kbps (Medium)</option>
+                            <option value="128">128 kbps (Low)</option>
+                            <option value="lossless" disabled>Lossless (Default)</option>
+                        </select>
+                    </div>
+                </section>
+
+                <!-- Action Button -->
+                <div id="downloadContainer" class="btn-download-container">
+                    <button id="btnDownload" class="btn-download">
+                        <i class="fa-solid fa-arrow-down-to-line"></i> Download Audio
+                    </button>
+                </div>
+
+                <!-- Progress Dashboard -->
+                <section id="progressCard" class="progress-card" aria-label="Task Progress" style="display: none;">
+                    <div class="progress-header">
+                        <div id="progressStage" class="progress-stage">
+                            <i class="fa-solid fa-spinner spinner"></i> Initializing...
+                        </div>
+                        <div id="progressPercentage" class="progress-percentage">0%</div>
+                    </div>
+                    <div class="progress-bar-track">
+                        <div id="progressBarFill" class="progress-bar-fill"></div>
+                    </div>
+                    <div class="progress-meta-row">
+                        <div id="progressSpeed" class="progress-meta-item">Speed: <span>—</span></div>
+                        <div id="progressEta" class="progress-meta-item">ETA: <span>—</span></div>
+                    </div>
+                    
+                    <!-- Dynamic Loading Messages -->
+                    <div id="loadingMsgContainer" class="loading-message-container" style="display: none;">
+                        <div id="loadingMsgText" class="loading-message-text">Analyzing soundwaves...</div>
+                    </div>
+                </section>
+
+            </div>
+        </header>
+
+        <!-- Built for Perfectionists Section (Why FlashiFi) -->
+        <section id="why-flashifi" class="perfectionists-section">
+            <div class="section-label">WHY FLASHIFI</div>
+            <h2 class="section-title">Built for Perfectionists</h2>
+            
+            <div class="perfectionists-grid">
+                <!-- Card 1 -->
+                <div class="perf-card">
+                    <div class="card-icon-circle yellow-badge">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h3>Metadata First</h3>
+                    <p>No blind downloads. Verify the album art, artist, and file quality before a single byte touches your hard drive.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="perf-card">
+                    <div class="card-icon-circle purple-badge">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3>Zero Ads, Zero BS</h3>
+                    <p>Most downloaders look like malware. FlashiFi is a clean, premium tool designed to respect your time and eyes.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="perf-card">
+                    <div class="card-icon-circle yellow-badge">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3>Privacy Centric</h3>
+                    <p>Your queries are processed memory-only. We don't log your downloads or sell your data. Pure utility.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Roadmap Section -->
+        <section id="roadmap" class="roadmap-section">
+            <div class="roadmap-card">
+                <div class="roadmap-left">
+                    <span class="roadmap-badge">ROADMAP</span>
+                    <h2>The future of batch downloading.</h2>
+                    <p class="roadmap-desc">We are working on powerful new tools to make migrating entire libraries a one-click process. Coming in Q3 2026.</p>
+                    
+                    <div class="roadmap-list">
+                        <div class="roadmap-list-item">
+                            <div class="list-item-icon">
+                                <i class="fa-solid fa-list-music"></i>
+                            </div>
+                            <div class="list-item-content">
+                                <h4>Playlist Downloader</h4>
+                                <p>Parse entire Spotify/YT playlists instantly.</p>
+                            </div>
+                        </div>
+                        <div class="roadmap-list-item">
+                            <div class="list-item-icon">
+                                <i class="fa-solid fa-layer-group"></i>
+                            </div>
+                            <div class="list-item-content">
+                                <h4>Batch Downloader</h4>
+                                <p>Paste multiple URLs, extract concurrently.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="roadmap-right">
+                    <div class="coming-soon-lock-box">
+                        <div class="lock-glow-ring"></div>
+                        <i class="fa-solid fa-lock lock-icon"></i>
+                        <span class="lock-label">Early Access</span>
+                        <span class="lock-sub">Coming Soon</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why FlashiFi Section (Comparison Table) -->
+        <section id="why-flashifi" class="comparison-section">
+            <h3><i class="fa-solid fa-shuffle"></i> Why FlashiFi?</h3>
+            <p class="comparison-subtitle">A direct comparison against typical online music downloaders.</p>
+            
+            <div class="comparison-grid">
+                <div class="comparison-card typical">
+                    <div class="card-header"><i class="fa-solid fa-circle-xmark"></i> Typical Downloaders</div>
+                    <ul class="comparison-list">
+                        <li><i class="fa-solid fa-times"></i> Intrusive pop-up ads and hidden redirects</li>
+                        <li><i class="fa-solid fa-times"></i> Tracking cookies and unsafe scripts</li>
+                        <li><i class="fa-solid fa-times"></i> Heavily compressed audio (poor bitrates)</li>
+                        <li><i class="fa-solid fa-times"></i> Slow download queues and capped speeds</li>
+                        <li><i class="fa-solid fa-times"></i> No preview before downloading</li>
+                    </ul>
+                </div>
+                <div class="comparison-card flashifi">
+                    <div class="card-header"><i class="fa-solid fa-circle-check"></i> FlashiFi</div>
+                    <ul class="comparison-list">
+                        <li><i class="fa-solid fa-check"></i> Zero advertisements, pure cleaner utility</li>
+                        <li><i class="fa-solid fa-check"></i> Privacy first, zero tracking headers</li>
+                        <li><i class="fa-solid fa-check"></i> Pristine transcoding up to 320kbps & Lossless</li>
+                        <li><i class="fa-solid fa-check"></i> Multi-threaded server-side processing</li>
+                        <li><i class="fa-solid fa-check"></i> Real-time metadata preview and check</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feedback Section (In-Page) -->
+        <section id="feedback" class="feedback-section">
+            <h3><i class="fa-solid fa-envelope-open-text"></i> Share Your Feedback</h3>
+            <p class="feedback-subtitle">Spotted a bug? Want to request a feature? Let us know directly below!</p>
+            
+            <div class="feedback-container-inner">
+                <form id="feedbackForm" class="feedback-form">
+                    <div class="form-group">
+                        <label for="feedbackEmail">Email Address (Optional)</label>
+                        <input type="email" id="feedbackEmail" placeholder="yourname@domain.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="feedbackMessage">Message or Bug Description (Required)</label>
+                        <textarea id="feedbackMessage" placeholder="Type your suggestion or feedback here..." required></textarea>
+                    </div>
+                    <button type="submit" id="btnSubmitFeedback" class="btn-submit-feedback">
+                        <i class="fa-solid fa-paper-plane"></i> Send Feedback
+                    </button>
+                </form>
+
+                <!-- Success Overlay state -->
+                <div id="feedbackSuccessOverlay" class="modal-status-overlay success" style="display: none;">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <h4>Feedback Sent!</h4>
+                    <p>Thank you for helping us improve FlashiFi. We really appreciate your suggestions!</p>
+                    <button id="btnSuccessOk" class="btn-status-ok">Awesome</button>
+                </div>
+
+                <!-- Error Overlay state -->
+                <div id="feedbackErrorOverlay" class="modal-status-overlay error" style="display: none;">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <h4>Submission Failed</h4>
+                    <p>There was a connection issue transmitting the feedback form. Please check your connection and try again.</p>
+                    <button id="btnErrorOk" class="btn-status-ok">Try Again</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="footer-top">
+                <a href="#" class="footer-logo">
+                    <span class="logo-badge"><i class="fa-solid fa-bolt-lightning"></i></span>
+                    <span class="logo-text">FlashiFi</span>
+                </a>
+                <div class="footer-links">
+                    <a href="https://ko-fi.com/flashbutlegendary" target="_blank" rel="noopener" class="footer-link">
+                        <i class="fa-solid fa-heart"></i> Donate
+                    </a>
+                    <a href="#feedback" class="footer-link">
+                        <i class="fa-solid fa-envelope-open-text"></i> Feedback
+                    </a>
+                    <a href="https://github.com/flashbutlegendary/flashifi" target="_blank" rel="noopener" class="footer-link">
+                        <i class="fa-solid fa-code"></i> Source
+                    </a>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <span class="footer-copy">© 2026 FlashiFi. All rights reserved. Built for speed. <span class="credit-divider">|</span> Made by — <a href="https://github.com/flashbutlegendary" target="_blank" rel="noopener" class="credit-link">flashbutlegendary</a></span>
+                <span class="footer-disclaimer">Not affiliated with YouTube or Spotify.</span>
+            </div>
+        </footer>
+
+    </div>
+
+
+
+    <!-- ── THANK YOU SUPPORT POPUP (BOTTOM RIGHT FLOATING) ────────────────── -->
+    <div id="supportPopup" class="support-popup-overlay" role="complementary" aria-labelledby="support-popup-title" style="display: none;">
+        <div class="support-popup-content">
+            <h4 id="support-popup-title"><i class="fa-solid fa-circle-check"></i> Conversion Successful!</h4>
+            <p>
+                FlashiFi is completely free, runs with zero ads, and is maintained by a solo creator. If it saved you time, consider supporting!
+            </p>
+            <div class="support-popup-actions">
+                <a href="https://ko-fi.com/flashbutlegendary" target="_blank" rel="noopener" class="btn-support-confirm">
+                    <i class="fa-solid fa-mug-hot"></i> Support Creator
+                </a>
+                <button id="btnSupportDismiss" class="btn-support-dismiss">
+                    Maybe next paycheck 💸
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script assets (messages must load before core application script) -->
+    <script src="assets/js/messages.js"></script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

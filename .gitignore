@@ -1,0 +1,67 @@
+# ──────────────────────────────────────────────────────────────
+# Flashify — Root .gitignore
+# ──────────────────────────────────────────────────────────────
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment variables — NEVER commit these
+.env
+backend/.env
+
+# Testing
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+
+# Type checking
+.mypy_cache/
+
+# Linting
+.ruff_cache/
+
+# Logs
+logs/
+*.log
+
+# Temporary / download files
+temp/
+tmp/
+*.tmp
+*.mp3
+*.flac
+*.wav
+*.m4a
+*.webm
+*.part
+
+# IDE / editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node (in case frontend build tools are added)
+node_modules/

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://flashifi.com/sitemap.xml

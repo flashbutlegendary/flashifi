@@ -1,0 +1,53 @@
+# ──────────────────────────────────────────────────────────────
+# Flashify — .dockerignore
+# Prevents unnecessary files from being sent to the Docker build
+# context, making builds faster and images smaller.
+# ──────────────────────────────────────────────────────────────
+
+# Python bytecode & caches
+**/__pycache__/
+**/*.py[cod]
+**/*.pyo
+**/.mypy_cache/
+**/.ruff_cache/
+**/.pytest_cache/
+
+# Virtual environments (MUST exclude — never copy into image)
+backend/.venv/
+backend/venv/
+backend/env/
+
+# Environment files (secrets — never bake into image)
+backend/.env
+.env
+
+# Test files (not needed in production image)
+backend/tests/
+backend/htmlcov/
+backend/.coverage*
+backend/coverage.xml
+
+# Git metadata
+.git/
+.github/
+.gitignore
+
+# IDE / editor
+.vscode/
+.idea/
+**/*.swp
+**/*.swo
+
+# OS files
+**/.DS_Store
+**/Thumbs.db
+
+# Logs & temp
+logs/
+temp/
+tmp/
+*.log
+*.tmp
+
+# Docs
+*.md
