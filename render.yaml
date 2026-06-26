@@ -38,3 +38,7 @@ services:
         value: "10"
       - key: FLASHIFI_DOWNLOAD_TIMEOUT
         value: "300"
+      # Cookie file — upload via Render Dashboard > Environment > Secret Files
+      # Set path: /etc/secrets/cookies.txt, then this env var picks it up automatically
+      - key: FLASHIFI_COOKIE_FILE
+        value: "/etc/secrets/cookies.txt"

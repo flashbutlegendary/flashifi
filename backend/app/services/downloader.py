@@ -60,6 +60,10 @@ class DownloaderService:
             "quiet": True,
             "socket_timeout": self._settings.download_timeout,
         }
+        if self._settings.resolved_cookie_file:
+            ydl_opts["cookiefile"] = self._settings.resolved_cookie_file
+        elif self._settings.cookie_browser:
+            ydl_opts["cookiesfrombrowser"] = (self._settings.cookie_browser,)
 
         if progress_callback:
             ydl_opts["progress_hooks"] = [self._make_progress_hook(progress_callback)]

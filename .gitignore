@@ -23,6 +23,10 @@ env/
 .env
 backend/.env
 
+# YouTube cookies — NEVER commit (contains session tokens)
+cookies.txt
+backend/cookies.txt
+
 # Testing
 .pytest_cache/
 htmlcov/

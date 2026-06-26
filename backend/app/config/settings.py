@@ -58,6 +58,12 @@ class Settings(BaseSettings):
     workers: int = 4
     """Number of Uvicorn worker processes (production only)."""
 
+    cookie_browser: str = ""
+    """Browser name to extract cookies from (e.g. 'chrome', 'edge', 'firefox')."""
+
+    cookie_file: str = ""
+    """Path to a cookies.txt file to authenticate with YouTube."""
+
     cors_origins: list[str] = ["*"]
     """Allowed CORS origins.  ``["*"]`` permits all origins."""
 
@@ -100,6 +106,29 @@ class Settings(BaseSettings):
     """Per-download timeout in seconds."""
 
     # ── Derived properties ───────────────────────────────────────────────
+
+    @property
+    def resolved_cookie_file(self) -> str:
+        """Return the cookie_file as an absolute path string, or empty if not set.
+
+        If ``cookie_file`` is a relative path it is resolved relative to the
+        directory where this settings module lives (i.e. the ``backend/``
+        root), so yt-dlp can always find it regardless of the process
+        working directory.
+
+        Returns
+        -------
+        str
+            Absolute path string to the cookies file, or ``""`` if not configured.
+        """
+        if not self.cookie_file:
+            return ""
+        p = Path(self.cookie_file)
+        if not p.is_absolute():
+            # Resolve relative to backend/ (parent of app/config/)
+            backend_root = Path(__file__).resolve().parent.parent.parent
+            p = (backend_root / p).resolve()
+        return str(p)
 
     @property
     def temp_dir(self) -> Path:

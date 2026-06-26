@@ -77,6 +77,10 @@ class YouTubeService:
             "no_warnings": True,
             "socket_timeout": self._settings.download_timeout,
         }
+        if self._settings.resolved_cookie_file:
+            ydl_opts["cookiefile"] = self._settings.resolved_cookie_file
+        elif self._settings.cookie_browser:
+            ydl_opts["cookiesfrombrowser"] = (self._settings.cookie_browser,)
 
         try:
             info = await asyncio.to_thread(self._run_ytdlp_extract, url, ydl_opts)
@@ -123,6 +127,10 @@ class YouTubeService:
             "no_warnings": True,
             "socket_timeout": self._settings.download_timeout,
         }
+        if self._settings.resolved_cookie_file:
+            ydl_opts["cookiefile"] = self._settings.resolved_cookie_file
+        elif self._settings.cookie_browser:
+            ydl_opts["cookiesfrombrowser"] = (self._settings.cookie_browser,)
 
         search_url = f"ytsearch{limit}:{query}"
         try:
