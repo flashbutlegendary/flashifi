@@ -76,6 +76,12 @@ class YouTubeService:
             "quiet": True,
             "no_warnings": True,
             "socket_timeout": self._settings.download_timeout,
+            # Use android/tv_embedded clients to bypass bot-detection on cloud IPs
+            "extractor_args": {
+                "youtube": {
+                    "player_client": ["android", "tv_embedded"],
+                }
+            },
         }
         if self._settings.resolved_cookie_file:
             ydl_opts["cookiefile"] = self._settings.resolved_cookie_file
@@ -126,6 +132,12 @@ class YouTubeService:
             "quiet": True,
             "no_warnings": True,
             "socket_timeout": self._settings.download_timeout,
+            # Use android/tv_embedded clients to bypass bot-detection on cloud IPs
+            "extractor_args": {
+                "youtube": {
+                    "player_client": ["android", "tv_embedded"],
+                }
+            },
         }
         if self._settings.resolved_cookie_file:
             ydl_opts["cookiefile"] = self._settings.resolved_cookie_file
